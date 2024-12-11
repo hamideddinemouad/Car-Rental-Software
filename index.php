@@ -70,14 +70,20 @@ $db = accessdb();
     </main>
     <form class="car-form" action="" method="post">
         <label for="brand">Car brand</label>
-        <input type="text" id="brand">
+        <input type="text" id="brand" name="bran">
         <label for="plate">Plate number</label>
-        <input type="text" id="plate">
+        <input type="text" id="plate" name="plate">
         <label for="model">Model</label>
-        <input type="text" id="model">
+        <input type="text" id="model" name="model">
         <label for="purchase">Purchase Date:</label>
-        <input type="text" id="purchase">
+        <input type="text" id="purchase" name="purchase">
         <button type="submit">ADD</button>
     </form>
+    <?php 
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        echo htmlspecialchars($_POST['model']);
+    }
+    ?>
 </body>
 </html>
