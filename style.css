@@ -62,3 +62,16 @@ button
     width: 50px;
     height: 30px;
 }
+.car-identifier
+{
+    display: none;
+}
+.to-hide
+{
+    display: none;
+}
+.name-icon
+{
+    display: flex;
+    justify-content: space-between;
+}
