@@ -2,9 +2,9 @@
 function renderDropCars($db)
 {
     $cars = $db->query("SELECT * FROM cars");
-    while ($cars->fetch_assoc())
+    while ($car = $cars->fetch_assoc())
     {
-        $car_plate = $cars['plate'];
+        $car_plate = $car['plate'];
         echo "<option value={$car_plate}>{$car_plate}</option>";
     }
 }
