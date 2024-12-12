@@ -1,12 +1,38 @@
 let nameIcon = document.querySelectorAll("span img");
 nameIcon.forEach(icon => icon.addEventListener("click", ()=>
 {
-    let idContainingDiv = icon.parentElement.parentElement.id;
+    let idContainingDiv = icon.parentElement.parentElement.parentElement.id;
+
+    console.log(idContainingDiv);
     let elementsToShow = document.querySelectorAll(`#${idContainingDiv} .to-hide`);
-    console.log(`#${idContainingDiv} .to-hide`);
-    // console.log(elementsToShow);
-    // elementsToShow.forEach(elem => console.log(elem));
+    // console.log(`#${idContainingDiv} .to-hide`);
+    console.log(elementsToShow);
+    elementsToShow.forEach(elem =>
+        {
+            if (elem.style.display === "block")
+            {
+                elem.style.display = "none";
+            }
+            else
+            {
+                elem.style.display = "block"
+            }
+        });
 }))
-function renderModal()
+let plusCar = document.querySelector(".pluscars");
+let plusClient = document.querySelector(".plusclients");
+
+let content = document.querySelectorAll(".contracts, .clients, .cars");
+plusCar.addEventListener("click", ()=>
 {
-}
+    content.forEach(piece => piece.style.display = "none");
+    document.querySelector(".car-form").style.display = "flex";
+    document.querySelector("main").style.justifyContent = "center";
+})
+plusClient.addEventListener("click", ()=>
+    {
+        content.forEach(piece => piece.style.display = "none");
+        document.querySelector(".client-form").style.display = "flex";
+        document.querySelector("main").style.justifyContent = "center";
+    })
+    

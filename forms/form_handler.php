@@ -10,6 +10,18 @@ function insert_car($db)
     $statement->bind_param("ssss", $plate, $brand, $model, $purchase);
     $statement->execute();
 }
+function insert_client($db)
+{
+    $name = $_POST['name'];
+    $adress = $_POST['adress'];
+    $phone = $_POST['phone'];
+    // echo "name = " . $name;
+    // var_dump($_POST);
+    $insert_query = "INSERT INTO clients (name, adress, phone) VALUES (?, ?, ?);";
+    $statement = $db->prepare($insert_query);
+    $statement->bind_param("sss", $name, $adress, $phone);
+    $statement->execute();
+}
     if ($_SERVER["REQUEST_METHOD"] === "POST")
     {
         switch($_POST['form-type'])
@@ -19,10 +31,11 @@ function insert_car($db)
                 header("location: ../index.php");
                 exit();
             case 'client-form':
+                insert_client($db);
                 header("location: ../index.php");
                 exit();
             case 'contract-form':
-                header("location: ../index.php");
+                // header("location: ../index.php");
                 exit();
         }
     }
