@@ -21,18 +21,28 @@ nameIcon.forEach(icon => icon.addEventListener("click", ()=>
 }))
 let plusCar = document.querySelector(".pluscars");
 let plusClient = document.querySelector(".plusclients");
-
+let plusContract = document.querySelector(".pluscontracts");
 let content = document.querySelectorAll(".contracts, .clients, .cars");
+
 plusCar.addEventListener("click", ()=>
 {
     content.forEach(piece => piece.style.display = "none");
     document.querySelector(".car-form").style.display = "flex";
     document.querySelector("main").style.justifyContent = "center";
 })
+
 plusClient.addEventListener("click", ()=>
     {
         content.forEach(piece => piece.style.display = "none");
         document.querySelector(".client-form").style.display = "flex";
         document.querySelector("main").style.justifyContent = "center";
     })
-    
+
+plusContract.addEventListener("click", ()=>
+    {
+        content.forEach(piece => piece.style.display = "none");
+        document.querySelector(".contract-form").style.display = "flex";
+        document.querySelector("main").style.justifyContent = "center";
+        console.log(plusClient);
+    })
+

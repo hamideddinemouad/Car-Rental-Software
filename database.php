@@ -40,9 +40,6 @@ function renderclients($db)
     $query_clients = $db->query("SELECT * FROM clients");
     while ($client = $query_clients->fetch_assoc())
     {
-       
-        // echo "<div>". $client['name'] ."</div>".
-        //      "<div>" . $client['adress'] . "</div>" ;
     echo "<div id='{$client['name']}' class='clientInfo'> <div  class='name-icon'> <span>{$client['name']}</span> <span><img src='images/info.svg' alt=''></span></div>
          <div class='to-hide'><span>Adress: {$client['adress']}</span></div>
          <div class='to-hide'><span>Phone: {$client['phone']}</span></div> </div>";

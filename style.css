@@ -9,6 +9,10 @@ h1 {
     color: #F29F58;
     text-align: center;
 }
+option
+{
+    font-family: "Poppins", serif;
+}
 @media (max-width: 600px)
 {
     main

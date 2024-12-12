@@ -50,12 +50,26 @@
     <form class="contract-form" action="forms/form_handler.php" method="post">
         <input type="hidden" value="contract-form" name="form-type">
 
-        <label for="carsdrop">Choose a car:</label>
+        <label for="carsdrop" >Choose a car:</label>
         <select id="carsdrop" name="carsdrop">
             <?php renderDropCars($db)?>
         </select>
 
+        <label for="namesdrop">Choose a client:</label>
+        <select name="namesdrop" id="namesdrop" name="namesdrop">
+            <?php renderDropClients($db)?>
+        </select>
+
+        <label for="startdate" >Start Date:</label>
+        <input type="date" id="startdate" name="startdate">
+
+        <label for="enddate">End Date:</label>
+        <input type="date" id="enddate" name="enddate">
+
+        <div class="form-buttons">
         <button type="submit">ADD</button>
+        <button type="button" onclick="window.location.href='index.php'">BACK</button>
+        </div>
     </form>
     <div class="contracts">
         <div class="titlecontracts">
