@@ -14,7 +14,7 @@ function rendercontracts($db)
     while ($contract = $query_contracts->fetch_assoc())
     {
         $name = getNameFromId($db, $contract);
-        echo "<div id='{$name}' class='clientInfo'> <div  class='name-icon'> <span>{$name}</span> <span><img src='images/info.svg' alt=''></span></div>
+        echo "<div id='$name' class='clientInfo'> <div  class='name-icon'> <span>$name</span> <span><img src='images/info.svg' alt=''></span></div>
         <div class='to-hide'><span>Duration: {$contract['duration']} days</span></div>
         <div class='to-hide'><span>Start date: {$contract['Start_date']}</span></div>
         <div class='to-hide'><span>End date: {$contract['End_date']}</span></div>
