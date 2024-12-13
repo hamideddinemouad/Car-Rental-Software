@@ -14,11 +14,29 @@ function rendercontracts($db)
     while ($contract = $query_contracts->fetch_assoc())
     {
         $name = getNameFromId($db, $contract);
-        echo "<div id='$name' class='clientInfo'> <div  class='name-icon'> <span>$name</span> <span><img src='images/info.svg' alt=''></span></div>
-        <div class='to-hide'><span>Duration: {$contract['duration']} days</span></div>
-        <div class='to-hide'><span>Start date: {$contract['Start_date']}</span></div>
-        <div class='to-hide'><span>End date: {$contract['End_date']}</span></div>
-        <div class='to-hide'><span>Car: {$contract['plate_c']}</span></div>
+        echo 
+        "<div id='{$name}' class='clientInfo'>
+        <div class='name-icon'>
+            <span class='namespan'>{$name}</span>
+            <div>
+                <span class='infospan'><img src='images/info.svg' alt=''></span>
+                <span class='deletespan'><img src='images/delete.svg' alt=''></span>
+                <span class='editspan'><img src='images/edit.svg' alt=''></span>
+            </div>
+            <div class='to-hide'>
+                <span>Duration: {$contract['duration']} days</span>
+            </div>
+            <div class='to-hide'>
+                <span>Start date: {$contract['Start_date']}</span>
+            </div>
+            <div class='to-hide'>
+                <span>End date: {$contract['End_date']}</span>
+            </div>
+            <div class='to-hide'>
+                <span>Car: {$contract['plate_c']}</span>
+            </div>
+        </div>
+        <div class='theline'></div>
         </div>";
     }
 }
@@ -28,11 +46,27 @@ function rendercars($db)
     while ($car = $query_cars->fetch_assoc())
     {
         
-        echo "<div id='{$car['plate']}' class='clientInfo'> <div  class='name-icon'> <span>{$car['plate']}</span> <span><img src='images/info.svg' alt=''></span></div>
-        <div class='to-hide'><span>Brand: {$car['brand']} </span></div>
-        <div class='to-hide'><span>Model: {$car['model']}</span></div>
-        <div class='to-hide'><span>Purchase date: {$car['purchase_date']}</span></div>
-        </div>";
+    echo
+        "<div id='{$car['plate']}' class='clientInfo'>
+        <div  class='name-icon'>
+            <span class='namespan'>{$car['plate']}</span>
+            <div>
+                <span class='infospan'><img src='images/info.svg' alt=''></span>
+                <span class='deletespan'><img src='images/delete.svg' alt=''></span>
+                <span class='editspan'><img src='images/edit.svg' alt=''></span>
+            </div>
+        </div>
+        <div class='to-hide'>
+            <span>Brand: {$car['brand']}</span>
+        </div>
+        <div class='to-hide'>
+            <span>Model: {$car['model']}</span>
+        </div>
+        <div class='to-hide'>
+            <span>Purchase date: {$car['purchase_date']}</span>
+        </div>
+        <div class='theline'></div>
+    </div>";
     }   
 }
 function renderclients($db)
@@ -40,9 +74,24 @@ function renderclients($db)
     $query_clients = $db->query("SELECT * FROM clients");
     while ($client = $query_clients->fetch_assoc())
     {
-    echo "<div id='{$client['name']}' class='clientInfo'> <div  class='name-icon'> <span>{$client['name']}</span> <span><img src='images/info.svg' alt=''></span></div>
-         <div class='to-hide'><span>Adress: {$client['adress']}</span></div>
-         <div class='to-hide'><span>Phone: {$client['phone']}</span></div> </div>";
+    echo 
+    "<div id='{$client['name']}_client' class='clientInfo'>
+    <div  class='name-icon'>
+        <span class='namespan'>{$client['name']}</span>
+        <div>
+            <span class='infospan'><img src='images/info.svg' alt=''></span>
+            <span class='deletespan'><img src='images/delete.svg' alt=''></span>
+            <span class='editspan'><img src='images/edit.svg' alt=''></span>
+        </div>
+    </div>
+         <div class='to-hide'>
+            <span>Adress: {$client['adress']}</span>
+        </div>
+         <div class='to-hide'>
+            <span>Phone: {$client['phone']}</span>
+        </div>
+        <div class='theline'></div>
+    </div>";
     }
 }
 function accessdb()

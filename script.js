@@ -1,4 +1,4 @@
-let nameIcon = document.querySelectorAll("span img");
+let nameIcon = document.querySelectorAll(".infospan");
 nameIcon.forEach(icon => icon.addEventListener("click", ()=>
 {
     let idContainingDiv = icon.parentElement.parentElement.parentElement.id;

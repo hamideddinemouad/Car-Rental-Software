@@ -14,7 +14,6 @@
 </head>
 <body>
     <h1>Rental Car</h1>
-
     <main>
     <form class="car-form" action="forms/form_handler.php" method="post">
         <input type="hidden" value="car-form" name="form-type">
@@ -73,20 +72,19 @@
     </form>
     <div class="contracts">
         <div class="titlecontracts">
-            <p>contracts</p>
-        <div class="pluscontracts"><img src="images/plus.svg" alt=""></div>
+            <p class="titles">contracts</p>
+        <div class="pluscontracts">Add</div>
         </div>
         <?php rendercontracts($db);?>
     </div>
     <div class="cars">
-        <div class="titlecars"><p>Cars</p><div class="pluscars"><img src="images/plus.svg" alt=""></div></div>
+        <div class="titlecars"><p class="titles">Cars</p><div class="pluscars">Add</div></div>
         <?php rendercars($db);?>
     </div>
     <div class="clients">
-        <div class="titleclients"><p>Clients</p><div class="plusclients"><img src="images/plus.svg" alt=""></div></div>
+        <div class="titleclients"><p class="titles">Clients</p><div class="plusclients">Add</div></div>
         <?php renderclients($db);?>
     </div>
     </main>
-
 </body>
 </html> 
