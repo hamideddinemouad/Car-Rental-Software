@@ -1,5 +1,4 @@
 <?php
-include 'dropdowncars.php';
 function getNameFromId($db, $contractRow)
 {
     $id = $contractRow['client_id_c'];
@@ -13,6 +12,24 @@ function getId($db, $contractRow)
     $id = $contractRow['client_id_c'];
     return $id;
 }
+function renderDropCarsEdit($db)
+{
+    $cars = $db->query("SELECT *FROM cars WHERE NOT EXISTS (SELECT 1 FROM contracts WHERE cars.plate = contracts.plate_c);");
+    while ($car = $cars->fetch_assoc())
+    {
+        $car_plate = $car['plate'];
+        echo "<option style='font-family: Poppins, serif;' value={$car_plate} name='plateeditcontract'>{$car_plate}</option>";
+    }   
+}
+function renderDropClientsEdit($db)
+{
+    $clients = $db->query("SELECT * FROM clients");
+    while ($client = $clients->fetch_assoc())
+    {
+        $clientName = $client['name'];
+        echo "<option style='font-family: Poppins, serif; font-size: 15px' value={$clientName} name={nameeditcontract}>{$clientName}</option>";
+    }   
+}
 function rendercontracts($db)
 {
     $query_contracts = $db->query("SELECT * FROM contracts");
@@ -20,38 +37,35 @@ function rendercontracts($db)
     while ($contract = $query_contracts->fetch_assoc())
     {
         $name = getNameFromId($db, $contract);
+
         echo 
-"<div id='{$client['name']}_client' class='clientInfo'>
-    <div  class='name-icon'>
-        <span class='namespan'>{$client['name']}</span>
+        "<div id='{$name}' class='clientInfo'>
+        <div class='name-icon'>
+            <span class='namespan'>{$name}</span>
+            <div>
+                <span class='infospan'><img src='images/info.svg' alt=''></span>
+            <form id='deleteform' action='forms/form_handler.php' method='post'>
+                <input type='hidden' value='deletecontract' name='form-type'>
+                <input type='hidden' value='{$contract['contract_number']}' name='contractid'>
+                <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+            </form>
+                <span class='editspan'><img src='images/edit.svg' alt=''></span>
+            </div>
         <div>
-            <span class='infospan'><img src='images/info.svg' alt=''></span>
-            <span class='deletespan'>
-                <form id='deleteform' action='forms/form_handler.php' method='post'>
-                    <input type='hidden' value='deleteclient' name='form-type'>
-                    <input type='hidden' value='{$client['name']}' name='clientname'>
-                    <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
-                </form>
-            </span>
-            <span class='editspan'>
-            <button class='editbuttonevent'><span ><img src='images/edit.svg' alt=''></span></button>
-            </span>
-        </div>
-    </div>
-    <div>
         <form id='editcontract' action='forms/form_handler.php' method='post'>
             <input type='hidden' value='editcontract' name='form-type'>
-            <input type='hidden' value='{$client['contract_number']}' name='contractidedit'>
+            <input type='hidden' value='{$contract['contract_number']}' name='contractidedit'>
 
 
             <label for='namesdrop'>Choose a client:</label>
-            <select name='namesdrop' id='namesdrop' name='namesdrop'>
-                renderDropClientsEdit($db)?>
+            <select name='namesdrop' id='namesdrop' name='namesdropedit'>
+          
+       
             </select>
 
             <label for='carsdrop' >Choose a car:</label>
-            <select id='carsdrop' name='carsdrop'>
-                renderDropCarsEdit($db);
+            <select id='carsdrop' name='carsdropedit'>
+            
             </select>
             
             <label for='startdate' >Start Date:</label>
@@ -63,15 +77,21 @@ function rendercontracts($db)
             <button type='submit'><span class='editspan'><img src='images/edit_final.svg' alt=''></span></button>
         </form>
         </div>
-         <div class='to-hide'>
-            <span>Adress: {$client['adress']}</span>
+            <div class='to-hide'>
+                <span>Duration: {$contract['duration']} days</span>
+            </div>
+            <div class='to-hide'>
+                <span>Start date: {$contract['Start_date']}</span>
+            </div>
+            <div class='to-hide'>
+                <span>End date: {$contract['End_date']}</span>
+            </div>
+            <div class='to-hide'>
+                <span>Car: {$contract['plate_c']}</span>
+            </div>
         </div>
-         <div class='to-hide'>
-            <span>Phone: {$client['phone']}</span>
-        </div>
-        
-    </div>
-    <div class='theline'></div>"; 
+        <div class='theline'></div>
+        </div>";
     }
 }
 function rendercars($db)
