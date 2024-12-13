@@ -150,3 +150,15 @@ border: none;
 background: none;
 cursor: pointer;
 }
+#editclientform
+{
+    display: none;
+}
+#editform button, .editspan button
+{
+    all: unset; /* Resets all styles */
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

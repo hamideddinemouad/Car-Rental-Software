@@ -10,7 +10,9 @@
 function getIdFromName($db, $name)
 {
     $sqliobj = $db->query("select client_id from clients where name='$name'");
+    // var_dump($sqliobj);
     $id= $sqliobj->fetch_assoc();
+    // var_dump($id);
     $id = $id['client_id'];
     return $id;
     // $array = $sqliobj->fetch_assoc();
@@ -73,6 +75,18 @@ function insert_contract($db)
     $statement->bind_param("ssis", $start_date, $end_date, $id, $plate_c);
     $statement->execute();
 }
+function edit_client($db)
+{
+    // var_dump($_POST);
+    // echo 
+    $prev_name = $_POST['previousclientnameedit'];
+    $name = $_POST['clientnameedit'];
+    $adress = $_POST['clientadressedit'];
+    $phone = $_POST['clientphonedit'];
+    $id = getIdFromName($db, $prev_name);
+    // echo $name, $adress, $phone;
+    $db->query("UPDATE clients SET name='$name', adress='$adress', phone='$phone' where client_id='$id'; ");
+}
     if ($_SERVER["REQUEST_METHOD"] === "POST")
     {
         switch($_POST['form-type'])
@@ -101,6 +115,10 @@ function insert_contract($db)
                 delete_contract($db);
                 header("location: ../index.php");
                 exit();
-        }
+            case 'editclient':
+                edit_client($db);
+                header("location: ../index.php");
+                exit();
+    }
     }
 ?>

@@ -3,10 +3,10 @@ nameIcon.forEach(icon => icon.addEventListener("click", ()=>
 {
     let idContainingDiv = icon.parentElement.parentElement.parentElement.id;
 
-    console.log(idContainingDiv);
+    // console.log(idContainingDiv);
     let elementsToShow = document.querySelectorAll(`#${idContainingDiv} .to-hide`);
     // console.log(`#${idContainingDiv} .to-hide`);
-    console.log(elementsToShow);
+    // console.log(elementsToShow);
     elementsToShow.forEach(elem =>
         {
             if (elem.style.display === "block")
@@ -15,7 +15,7 @@ nameIcon.forEach(icon => icon.addEventListener("click", ()=>
             }
             else
             {
-                elem.style.display = "block"
+                elem.style.display = "block";
             }
         });
 }))
@@ -43,6 +43,25 @@ plusContract.addEventListener("click", ()=>
         content.forEach(piece => piece.style.display = "none");
         document.querySelector(".contract-form").style.display = "flex";
         document.querySelector("main").style.justifyContent = "center";
-        console.log(plusClient);
+        // console.log(plusClient);
     })
+let editclientform = document.querySelector("#editclientform");
+let editbuttons = document.querySelectorAll(".editbuttonevent");
+console.log(editclientform);
+// console.log(editbutton);
+editbuttons.forEach(edit=> {
+    edit.addEventListener("click", ()=>
+        {
+            if (edit.nextElementSibling.style.display === "inline")
+            {
+                edit.nextElementSibling.style.display = "none"
+            }
+            else
+            {
+                edit.nextElementSibling.style.display = "inline";
+            }
+        })
+})
+
+// console.log(editbutton);
 

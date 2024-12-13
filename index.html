@@ -11,11 +11,20 @@
                 </form>
             </span>
             <span class='editspan'>
-                <form id='deleteform' action='forms/form_handler.php' method='post'>
+            <button class='editbuttonevent'><span ><img src='images/edit.svg' alt=''></span></button>
+            <form id='editclientform' action='forms/form_handler.php' method='post'>
                 <input type='hidden' value='editclient' name='form-type'>
-                <label for=""></label>
-                <input type='text' id=''>
-                <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+
+                <label for='clientnameedit'></label>
+                <input type='text' id='clientnameedit' required maxlength='50' value='{$client['name']}'>
+
+                <label for='clientadressedit'></label>
+                <input type='text' id='clientadressedit' required maxlength='50' value='{$client['adress']}'>
+
+                <label for='clientphonedit'></label>
+                <input type='text' id='clientphoneedit' required maxlength='50' value='{$client['phone']}'>
+
+                <button type='submit'><span class='editspan'><img src='images/edit.svg' alt=''></span></button>
             </form>
             </span>
         </div>

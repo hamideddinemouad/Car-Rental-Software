@@ -100,7 +100,24 @@ function renderclients($db)
                     <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
                 </form>
             </span>
-            <span class='editspan'><img src='images/edit.svg' alt=''></span>
+            <span class='editspan'>
+            <button class='editbuttonevent'><span ><img src='images/edit.svg' alt=''></span></button>
+            <form id='editclientform' action='forms/form_handler.php' method='post'>
+                <input type='hidden' value='editclient' name='form-type'>
+                <input type='hidden' value='{$client['name']}' name='previousclientnameedit'>
+
+                <label for='clientnameedit'></label>
+                <input type='text' id='clientnameedit'  name='clientnameedit' required maxlength='50' value='{$client['name']}'>
+
+                <label for='clientadressedit'></label>
+                <input type='text' id='clientadressedit' name='clientadressedit' required maxlength='50' value='{$client['adress']}'>
+
+                <label for='clientphonedit'></label>
+                <input type='text' id='clientphoneedit' name='clientphonedit' required maxlength='50' value='{$client['phone']}'>
+
+                <button type='submit'><span class='editspan'><img src='images/edit_final.svg' alt=''></span></button>
+            </form>
+            </span>
         </div>
     </div>
          <div class='to-hide'>
