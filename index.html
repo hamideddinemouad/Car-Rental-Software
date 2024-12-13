@@ -16,19 +16,27 @@
         </div>
     </div>
     <div>
-        <form id='editclientform' style='width: 100%' action='forms/form_handler.php' method='post'>
-            <input type='hidden' value='editclient' name='form-type'>
-            <input type='hidden' value='{$client['name']}' name='previousclientnameedit'>
+        <form id='editcontract' action='forms/form_handler.php' method='post'>
+            <input type='hidden' value='editcontract' name='form-type'>
+            <input type='hidden' value='{$client['contract_number']}' name='contractidedit'>
 
-            <label for='clientnameedit'>Name:</label>
-            <input type='text' id='clientnameedit'  name='clientnameedit' required maxlength='50' value='{$client['name']}'>
 
-            <label for='clientadressedit'>Adress:</label>
-            <input type='text' id='clientadressedit' name='clientadressedit' required maxlength='50' value='{$client['adress']}'>
+            <label for="namesdrop">Choose a client:</label>
+            <select name="namesdrop" id="namesdrop" name="namesdrop">
+                renderDropClientsEdit($db)?>
+            </select>
 
-            <label for='clientphonedit'>Phone:</label>
-            <input type='text' id='clientphoneedit' name='clientphonedit' required maxlength='50' value='{$client['phone']}'>
-
+            <label for="carsdrop" >Choose a car:</label>
+            <select id="carsdrop" name="carsdrop">
+                renderDropCarsEdit($db);
+            </select>
+            
+            <label for="startdate" >Start Date:</label>
+            <input type="date" id="startdate" name="startdateedit">
+    
+            <label for="enddate">End Date:</label>
+            <input type="date" id="enddate" name="enddateedit">
+            
             <button type='submit'><span class='editspan'><img src='images/edit_final.svg' alt=''></span></button>
         </form>
         </div>
@@ -41,3 +49,53 @@
         
     </div>
     <div class='theline'></div>"; 
+
+
+"<div id='{$name}' class='clientInfo'>
+        <div class='name-icon'>
+            <span class='namespan'>{$name}</span>
+            <div>
+                <span class='infospan'><img src='images/info.svg' alt=''></span>
+            <form id='deleteform' action='forms/form_handler.php' method='post'>
+                <input type='hidden' value='deletecontract' name='form-type'>
+                <input type='hidden' value='{$contract['contract_number']}' name='contractid'>
+                <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+            </form>
+            <span class='editspan'>
+                <button class='editbuttonevent'><span ><img src='images/edit.svg' alt=''></span></button>
+                </span>
+            </div>
+            <div>
+                <form id='editcarform' action='forms/form_handler.php' method='post'>
+                    <input type='hidden' value='editcar' name='form-type'>
+                    <input type='hidden' value='{$car['plate']}' name='plate'>
+        
+                    <label for='brandedit'>Brand:</label>
+                    <input type='text' id='brandedit'  name='brandedit' required maxlength='50' value='{car['brand']}'>
+        
+                    <label for='modeledit'>Model:</label>
+                    <input type='text' id='modeledit' name='modeledit' required maxlength='50' value='{$car['model']}'>
+        
+                    <label for='purchaseedit'>Purchase Date:</label>
+                    <input type='text' id='purchaseedit' name='purchaseedit' required maxlength='50' value='{$car['purchase_date']}'>
+        
+                    <button type='submit'><span class='editspan'><img src='images/edit_final.svg' alt=''></span></button>
+                </form>
+            </div>
+            <div class='to-hide'>
+                <span>Duration: {$contract['duration']} days</span>
+            </div>
+            <div class='to-hide'>
+                <span>Start date: {$contract['Start_date']}</span>
+            </div>
+            <div class='to-hide'>
+                <span>End date: {$contract['End_date']}</span>
+            </div>
+            <div class='to-hide'>
+                <span>Car: {$contract['plate_c']}</span>
+            </div>
+        </div>
+        
+        </div>
+        <div class='theline'></div>
+";

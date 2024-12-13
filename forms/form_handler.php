@@ -87,7 +87,16 @@ function edit_client($db)
     // echo $name, $adress, $phone;
     $db->query("UPDATE clients SET name='$name', adress='$adress', phone='$phone' where client_id='$id'; ");
 }
-    if ($_SERVER["REQUEST_METHOD"] === "POST")
+function edit_car($db)
+{
+    // var_dump($_POST);
+    $plate = $_POST['plateedit'];
+    $brand = $_POST['brandedit'];
+    $model = $_POST['modeledit'];
+    $purchase = $_POST['purchaseedit'];
+    $db->query("UPDATE cars SET brand='$brand', model='$model', purchase_date='$purchase' where plate='$plate'; ");
+}
+if ($_SERVER["REQUEST_METHOD"] === "POST")
     {
         switch($_POST['form-type'])
         {
@@ -119,6 +128,14 @@ function edit_client($db)
                 edit_client($db);
                 header("location: ../index.php");
                 exit();
+            case 'editcar':
+                edit_car($db);
+                header("location: ../index.php");
+                exit();
+            case 'editcontract':
+                // edit_contract($db);
+                header("location: ../index.php");
+                exit();           
     }
     }
 ?>

@@ -182,6 +182,6 @@ cursor: pointer;
 }
 #editclientform
 {
-    display: flex;
+    display: none;
     /* justify-content: flex-start; */
 }
