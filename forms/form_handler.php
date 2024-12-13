@@ -96,6 +96,24 @@ function edit_car($db)
     $purchase = $_POST['purchaseedit'];
     $db->query("UPDATE cars SET brand='$brand', model='$model', purchase_date='$purchase' where plate='$plate'; ");
 }
+function edit_contract($db)
+{
+    // var_dump($_POST);
+    $contractnumber =  $_POST['contractidedit'];
+    // echo $contractnumber;
+    $clientid = getIdFromName($db, $_POST['namesdropedit']);
+    $startdate = $_POST['startdateedit'];
+    $enddate =  $_POST['enddateedit'];
+    $plate =  $_POST['carsdropedit'];
+    $quer = "UPDATE contracts SET start_date='$startdate', end_date='$enddate',client_id_c='{$clientid}', plate_c='$plate',
+    WHERE contract_number = '$contractnumber'";
+    // $quer = "UPDATE contracts SET start_date='$startdate', end_date='$enddate',client_id_c=$clientid, plate_c='$plate',
+    //    WHERE contract_number = $contractnumber;";
+    // echo $quer;
+    // var_dump($startdate) ;
+    // echo $_POST['']
+    $db->query("UPDATE contracts SET start_date='$startdate', end_date='$enddate',client_id_c=$clientid, plate_c='$plate' WHERE contract_number = $contractnumber;");
+}
 if ($_SERVER["REQUEST_METHOD"] === "POST")
     {
         switch($_POST['form-type'])
@@ -133,9 +151,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
                 header("location: ../index.php");
                 exit();
             case 'editcontract':
-                // edit_contract($db);
-                header("location: ../index.php");
-                exit();           
+                edit_contract($db);
+                // header("location: ../index.php");
+                // exit();           
     }
     }
 ?>

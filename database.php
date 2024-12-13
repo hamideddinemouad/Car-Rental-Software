@@ -15,20 +15,26 @@ function getId($db, $contractRow)
 function renderDropCarsEdit($db)
 {
     $cars = $db->query("SELECT *FROM cars WHERE NOT EXISTS (SELECT 1 FROM contracts WHERE cars.plate = contracts.plate_c);");
+    $carnames = '';
     while ($car = $cars->fetch_assoc())
     {
         $car_plate = $car['plate'];
-        echo "<option style='font-family: Poppins, serif;' value={$car_plate} name='plateeditcontract'>{$car_plate}</option>";
-    }   
+        $carnames .= "<option style='font-family: Poppins, serif;' value={$car_plate} name='plateeditcontract'>{$car_plate}</option>";
+    }
+    return $carnames;   
 }
 function renderDropClientsEdit($db)
 {
     $clients = $db->query("SELECT * FROM clients");
+    $options = '';
+    
     while ($client = $clients->fetch_assoc())
     {
         $clientName = $client['name'];
-        echo "<option style='font-family: Poppins, serif; font-size: 15px' value={$clientName} name={nameeditcontract}>{$clientName}</option>";
-    }   
+        $options .= "<option style='font-family: Poppins, serif; font-size: 15px' value='{$clientName}' name='nameeditcontract'>{$clientName}</option>";
+    }
+
+    return $options;
 }
 function rendercontracts($db)
 {
@@ -36,6 +42,9 @@ function rendercontracts($db)
     
     while ($contract = $query_contracts->fetch_assoc())
     {
+        $options = renderDropClientsEdit($db);
+        $carnames = renderDropCarsEdit($db);
+
         $name = getNameFromId($db, $contract);
 
         echo 
@@ -49,8 +58,9 @@ function rendercontracts($db)
                 <input type='hidden' value='{$contract['contract_number']}' name='contractid'>
                 <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
             </form>
-                <span class='editspan'><img src='images/edit.svg' alt=''></span>
+
             </div>
+        </div>
         <div>
         <form id='editcontract' action='forms/form_handler.php' method='post'>
             <input type='hidden' value='editcontract' name='form-type'>
@@ -58,14 +68,12 @@ function rendercontracts($db)
 
 
             <label for='namesdrop'>Choose a client:</label>
-            <select name='namesdrop' id='namesdrop' name='namesdropedit'>
-          
-       
-            </select>
-
+            <select name='namesdropedit' id='namesdrop' name='namesdropedit'>
+            $options
+           </select>
             <label for='carsdrop' >Choose a car:</label>
             <select id='carsdrop' name='carsdropedit'>
-            
+            $carnames
             </select>
             
             <label for='startdate' >Start Date:</label>
@@ -91,7 +99,7 @@ function rendercontracts($db)
             </div>
         </div>
         <div class='theline'></div>
-        </div>";
+        ";
     }
 }
 function rendercars($db)
