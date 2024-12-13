@@ -1,1 +1,30 @@
-<div class="theline"> _____________ </div>
+"<div id='{$client['name']}_client' class='clientInfo'>
+    <div  class='name-icon'>
+        <span class='namespan'>{$client['name']}</span>
+        <div>
+            <span class='infospan'><img src='images/info.svg' alt=''></span>
+            <span class='deletespan'>
+                <form id='deleteform' action='forms/form_handler.php' method='post'>
+                    <input type='hidden' value='deleteclient' name='form-type'>
+                    <input type='hidden' value='{$client['name']}' name='clientname'>
+                    <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+                </form>
+            </span>
+            <span class='editspan'>
+                <form id='deleteform' action='forms/form_handler.php' method='post'>
+                <input type='hidden' value='editclient' name='form-type'>
+                <label for=""></label>
+                <input type='text' id=''>
+                <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+            </form>
+            </span>
+        </div>
+    </div>
+         <div class='to-hide'>
+            <span>Adress: {$client['adress']}</span>
+        </div>
+         <div class='to-hide'>
+            <span>Phone: {$client['phone']}</span>
+        </div>
+        <div class='theline'></div>
+    </div>"; 

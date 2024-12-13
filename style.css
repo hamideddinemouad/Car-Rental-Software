@@ -138,3 +138,15 @@ img
     font-weight: bolder;
     color: #F29F58;
 }
+#deleteform
+{
+    display: inline;
+}
+#deleteform button
+{
+all: unset; /* Resets all styles */
+padding: 0;
+border: none;
+background: none;
+cursor: pointer;
+}

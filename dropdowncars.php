@@ -1,7 +1,7 @@
 <?php
 function renderDropCars($db)
 {
-    $cars = $db->query("SELECT * FROM cars");
+    $cars = $db->query("SELECT *FROM cars WHERE NOT EXISTS (SELECT 1 FROM contracts WHERE cars.plate = contracts.plate_c);");
     while ($car = $cars->fetch_assoc())
     {
         $car_plate = $car['plate'];

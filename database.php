@@ -7,6 +7,11 @@ function getNameFromId($db, $contractRow)
     $client_name = $client_name->fetch_assoc();
     return $client_name['name'];
 }
+function getId($db, $contractRow)
+{
+    $id = $contractRow['client_id_c'];
+    return $id;
+}
 function rendercontracts($db)
 {
     $query_contracts = $db->query("SELECT * FROM contracts");
@@ -20,7 +25,11 @@ function rendercontracts($db)
             <span class='namespan'>{$name}</span>
             <div>
                 <span class='infospan'><img src='images/info.svg' alt=''></span>
-                <span class='deletespan'><img src='images/delete.svg' alt=''></span>
+            <form id='deleteform' action='forms/form_handler.php' method='post'>
+                <input type='hidden' value='deletecontract' name='form-type'>
+                <input type='hidden' value='{$contract['contract_number']}' name='contractid'>
+                <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+            </form>
                 <span class='editspan'><img src='images/edit.svg' alt=''></span>
             </div>
             <div class='to-hide'>
@@ -45,28 +54,31 @@ function rendercars($db)
     $query_cars = $db->query("SELECT * FROM cars");
     while ($car = $query_cars->fetch_assoc())
     {
-        
     echo
-        "<div id='{$car['plate']}' class='clientInfo'>
-        <div  class='name-icon'>
-            <span class='namespan'>{$car['plate']}</span>
-            <div>
-                <span class='infospan'><img src='images/info.svg' alt=''></span>
-                <span class='deletespan'><img src='images/delete.svg' alt=''></span>
-                <span class='editspan'><img src='images/edit.svg' alt=''></span>
-            </div>
+"<div id='{$car['plate']}' class='clientInfo'>
+    <div  class='name-icon'>
+        <span class='namespan'>{$car['plate']}</span>
+        <div>
+            <span class='infospan'><img src='images/info.svg' alt=''></span>
+            <form id='deleteform' action='forms/form_handler.php' method='post'>
+                <input type='hidden' value='deletecar' name='form-type'>
+                <input type='hidden' value='{$car['plate']}' name='carplate'>
+                <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+            </form>
+            <span class='editspan'><img src='images/edit.svg' alt=''></span>
         </div>
-        <div class='to-hide'>
-            <span>Brand: {$car['brand']}</span>
-        </div>
-        <div class='to-hide'>
-            <span>Model: {$car['model']}</span>
-        </div>
-        <div class='to-hide'>
-            <span>Purchase date: {$car['purchase_date']}</span>
-        </div>
-        <div class='theline'></div>
-    </div>";
+    </div>
+    <div class='to-hide'>
+        <span>Brand: {$car['brand']}</span>
+    </div>
+    <div class='to-hide'>
+        <span>Model: {$car['model']}</span>
+    </div>
+    <div class='to-hide'>
+        <span>Purchase date: {$car['purchase_date']}</span>
+    </div>
+    <div class='theline'></div>
+</div>";
     }   
 }
 function renderclients($db)
@@ -74,13 +86,20 @@ function renderclients($db)
     $query_clients = $db->query("SELECT * FROM clients");
     while ($client = $query_clients->fetch_assoc())
     {
-    echo 
-    "<div id='{$client['name']}_client' class='clientInfo'>
+    echo
+
+"<div id='{$client['name']}_client' class='clientInfo'>
     <div  class='name-icon'>
         <span class='namespan'>{$client['name']}</span>
         <div>
             <span class='infospan'><img src='images/info.svg' alt=''></span>
-            <span class='deletespan'><img src='images/delete.svg' alt=''></span>
+            <span class='deletespan'>
+                <form id='deleteform' action='forms/form_handler.php' method='post'>
+                    <input type='hidden' value='deleteclient' name='form-type'>
+                    <input type='hidden' value='{$client['name']}' name='clientname'>
+                    <button type='submit'><span class='deletespan'><img src='images/delete.svg' alt=''></span></button>
+                </form>
+            </span>
             <span class='editspan'><img src='images/edit.svg' alt=''></span>
         </div>
     </div>
@@ -91,7 +110,7 @@ function renderclients($db)
             <span>Phone: {$client['phone']}</span>
         </div>
         <div class='theline'></div>
-    </div>";
+    </div>"; 
     }
 }
 function accessdb()
@@ -102,5 +121,6 @@ function accessdb()
     }
     return ($database);
 }
+
 $db = accessdb();
 ?>

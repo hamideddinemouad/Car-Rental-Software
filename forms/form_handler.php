@@ -38,6 +38,21 @@ function insert_client($db)
     $statement->bind_param("sss", $name, $adress, $phone);
     $statement->execute();
 }
+function delete_client($db)
+{
+    $client_name = $_POST['clientname'];
+    $db->query("DELETE FROM clients WHERE name='$client_name'");
+}
+function delete_car($db)
+{
+    $plate= $_POST['carplate'];
+    $db->query("DELETE FROM cars WHERE plate='$plate'");
+}
+function delete_contract($db)
+{
+    $contractid = $_POST['contractid'];
+    $db->query("DELETE FROM contracts WHERE contract_number=$contractid");
+}
 function insert_contract($db)
 {
     // var_dump($_POST);
@@ -72,6 +87,18 @@ function insert_contract($db)
                 exit();
             case 'contract-form':
                 insert_contract($db);
+                header("location: ../index.php");
+                exit();
+            case 'deleteclient':
+                delete_client($db);
+                header("location: ../index.php");
+                exit();
+            case 'deletecar':
+                delete_car($db);
+                header("location: ../index.php");
+                exit();
+            case 'deletecontract':
+                delete_contract($db);
                 header("location: ../index.php");
                 exit();
         }
