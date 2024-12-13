@@ -45,8 +45,10 @@ function rendercontracts($db)
                 <span>Car: {$contract['plate_c']}</span>
             </div>
         </div>
+        
+        </div>
         <div class='theline'></div>
-        </div>";
+        ";
     }
 }
 function rendercars($db)
@@ -77,8 +79,8 @@ function rendercars($db)
     <div class='to-hide'>
         <span>Purchase date: {$car['purchase_date']}</span>
     </div>
-    <div class='theline'></div>
-</div>";
+    </div>
+<div class='theline'></div>";
     }   
 }
 function renderclients($db)
@@ -102,32 +104,35 @@ function renderclients($db)
             </span>
             <span class='editspan'>
             <button class='editbuttonevent'><span ><img src='images/edit.svg' alt=''></span></button>
-            <form id='editclientform' action='forms/form_handler.php' method='post'>
-                <input type='hidden' value='editclient' name='form-type'>
-                <input type='hidden' value='{$client['name']}' name='previousclientnameedit'>
-
-                <label for='clientnameedit'></label>
-                <input type='text' id='clientnameedit'  name='clientnameedit' required maxlength='50' value='{$client['name']}'>
-
-                <label for='clientadressedit'></label>
-                <input type='text' id='clientadressedit' name='clientadressedit' required maxlength='50' value='{$client['adress']}'>
-
-                <label for='clientphonedit'></label>
-                <input type='text' id='clientphoneedit' name='clientphonedit' required maxlength='50' value='{$client['phone']}'>
-
-                <button type='submit'><span class='editspan'><img src='images/edit_final.svg' alt=''></span></button>
-            </form>
             </span>
         </div>
     </div>
+    <div>
+        <form id='editclientform' style='width: 100%' action='forms/form_handler.php' method='post'>
+            <input type='hidden' value='editclient' name='form-type'>
+            <input type='hidden' value='{$client['name']}' name='previousclientnameedit'>
+
+            <label for='clientnameedit'>Name:</label>
+            <input type='text' id='clientnameedit'  name='clientnameedit' required maxlength='50' value='{$client['name']}'>
+
+            <label for='clientadressedit'>Adress:</label>
+            <input type='text' id='clientadressedit' name='clientadressedit' required maxlength='50' value='{$client['adress']}'>
+
+            <label for='clientphonedit'>Phone:</label>
+            <input type='text' id='clientphoneedit' name='clientphonedit' required maxlength='50' value='{$client['phone']}'>
+
+            <button type='submit'><span class='editspan'><img src='images/edit_final.svg' alt=''></span></button>
+        </form>
+        </div>
          <div class='to-hide'>
             <span>Adress: {$client['adress']}</span>
         </div>
          <div class='to-hide'>
             <span>Phone: {$client['phone']}</span>
         </div>
-        <div class='theline'></div>
-    </div>"; 
+        
+    </div>
+    <div class='theline'></div>"; 
     }
 }
 function accessdb()

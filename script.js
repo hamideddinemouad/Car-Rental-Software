@@ -47,18 +47,18 @@ plusContract.addEventListener("click", ()=>
     })
 let editclientform = document.querySelector("#editclientform");
 let editbuttons = document.querySelectorAll(".editbuttonevent");
-console.log(editclientform);
+// console.log(editclientform);
 // console.log(editbutton);
 editbuttons.forEach(edit=> {
     edit.addEventListener("click", ()=>
         {
-            if (edit.nextElementSibling.style.display === "inline")
+            if (edit.closest(".name-icon").nextElementSibling.querySelector("form").style.display === "flex")
             {
-                edit.nextElementSibling.style.display = "none"
+                edit.closest(".name-icon").nextElementSibling.querySelector("form").style.display = "none"
             }
             else
             {
-                edit.nextElementSibling.style.display = "inline";
+                edit.closest(".name-icon").nextElementSibling.querySelector("form").style.display = "flex";
             }
         })
 })
